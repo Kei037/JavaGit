@@ -16,11 +16,11 @@ public class AccountService {
 		accountDao.addAccount(account);
 	}
 	
-	public List<Account> findAccountsBySsn(String ssn) {
+	public List<Account> getfindAccountsBySsn(String ssn) {
 		return accountDao.findAccountsBySsn(ssn);
 	}
 	
-	public List<Account> findAllAccounts() {
+	public List<Account> getfindAllAccounts() {
 		return accountDao.findAllAccounts();
 	}
 	
@@ -30,6 +30,13 @@ public class AccountService {
 	 * @return
 	 */
 	public String generateAccountNum() {
-		return null;
+		String numStr = String.valueOf((int)(Math.random() * 1000000000));
+		StringBuilder sb = new StringBuilder();
+		sb.append(numStr.substring(0, 3));
+		sb.append("-");
+		sb.append(numStr.substring(3, 5));
+		sb.append("-");
+		sb.append(numStr.substring(5));
+		return sb.toString();
 	}
 }

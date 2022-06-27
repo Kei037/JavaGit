@@ -126,12 +126,18 @@ public class AccountDao {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
+			Account account = null;
 			try {
 				con = DataSourceManager.getConnection();
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					
+					if ( rs.getString("accountType").charAt(0) == 'S' ) {
+						SavingsAccount sa = new SavingsAccount();
+						
+					}else {
+						CheckingAccount ca = new CheckingAccount();
+					}
 				}
 			} finally {
 				DataSourceManager.close(rs, pstmt, con);

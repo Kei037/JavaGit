@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.varxyz.jv251.dao.AccountDao;
 import com.varxyz.jv251.dao.CustomerDao;
+import com.varxyz.jv251.domain.Account;
 import com.varxyz.jv251.domain.CheckingAccount;
 import com.varxyz.jv251.domain.Customer;
 import com.varxyz.jv251.domain.SavingsAccount;
@@ -41,7 +42,6 @@ public class BankService {
 		}else {
 			throw new DuplicatedEntifyException(ssn + " is duplicated.");
 		}
-		
 	}
 	
 	public Customer getCustomerBySsn(String ssn) {
@@ -89,5 +89,9 @@ public class BankService {
 	
 	public boolean isCustomer(String ssn) {
 		return customerService.getCustomerBySsn(ssn) == null ? false : true;
+	}
+	
+	public List<Account> getfindAccountsBySsn(String ssn) {
+		return accountService.getfindAccountsBySsn(ssn);
 	}
 }
