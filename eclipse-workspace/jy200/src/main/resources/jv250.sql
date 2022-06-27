@@ -62,7 +62,7 @@ WHERE Account.customerId = Customer.cid AND Customer.ssn = '961578-1523267';
 
 -- inner join 작성방식
 SELECT * FROM Account a INNER JOIN Customer c ON a.customerId = c.cid
-WHERE c.ssn = '961578-1523267';
+WHERE c.ssn = '970824-1234567';
 
 
 

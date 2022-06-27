@@ -62,7 +62,7 @@ public class BankService {
 		Customer customer = customerService.getCustomerBySsn(ssn);
 		if (customer != null) {
 			account.setCustomer(customer);
-			accountService.addAcount(account);
+			accountService.addAccount(account);
 		}else {
 			throw new CustomerNotFoundException(ssn + " not found");
 		}
@@ -80,7 +80,7 @@ public class BankService {
 		Customer customer = customerService.getCustomerBySsn(ssn);
 		if (customer != null) {
 			account.setCustomer(customer);
-			accountService.addAcount(account);
+			accountService.addAccount(account);
 		}else {
 			throw new CustomerNotFoundException(ssn + " not found");
 		}
@@ -94,4 +94,18 @@ public class BankService {
 	public List<Account> getfindAccountsBySsn(String ssn) {
 		return accountService.getfindAccountsBySsn(ssn);
 	}
+	
+	public List<Account> findAllAccounts() {
+		return accountService.getfindAllAccounts();
+	}
+	
+	
+	
+	public void withdrawtest(String accountNum , double amount) {
+		AccountDao test = new AccountDao();
+		test.withdraw(accountNum, amount);
+	}
+	
+	
+	
 }

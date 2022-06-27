@@ -12,7 +12,7 @@ public class AccountService {
 		this.accountDao = accountDao;
 	}
 	
-	public void addAcount(Account account) {
+	public void addAccount(Account account) {
 		accountDao.addAccount(account);
 	}
 	

@@ -132,12 +132,36 @@ public class AccountDao {
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
+//					if ( rs.getString("accountType").charAt(0) == 'S' ) {
+//						SavingsAccount sa = new SavingsAccount();
+//						
+//					}else {
+//						CheckingAccount ca = new CheckingAccount();
+//					}
+//					account.setAid(rs.getLong("aid"));
+//					account.setAccountNum(rs.getString("accountNum"));
+//					account.setBalance(rs.getDouble("balance"));
+//					account.setAccountType(rs.getString("accountType").charAt(0));
+//					accountList.add(account);
+					
 					if ( rs.getString("accountType").charAt(0) == 'S' ) {
-						SavingsAccount sa = new SavingsAccount();
-						
+						account = new SavingsAccount();
+						((SavingsAccount)account).setInterestRate(
+								rs.getDouble("interestRate"));
 					}else {
-						CheckingAccount ca = new CheckingAccount();
+						account = new CheckingAccount();
+						((CheckingAccount)account).setOverdraftAmount(
+								rs.getDouble("overdraft"));
 					}
+					account.setAid(rs.getLong("aid"));
+					account.setAccountNum(rs.getString("accountNum"));
+					account.setBalance(rs.getDouble("balance"));
+					account.setCustomer(new Customer(rs.getString("name"),
+							rs.getString("ssn"), rs.getString("phone")));
+					account.setRegDate(rs.getTimestamp("regDate"));
+					account.setAccountType(rs.getString("accountType").charAt(0));
+					accountList.add(account);
+					
 				}
 			} finally {
 				DataSourceManager.close(rs, pstmt, con);
@@ -145,7 +169,68 @@ public class AccountDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return accountList;
+	}
+	
+	public void withdraw(String accountNum, double amount) {
+		String sql = "SELECT balance, accountType FROM Account WHERE accountNum = ?";
+		Account c = new Account();
+		SavingsAccount sa = new SavingsAccount();
+		CheckingAccount ca = new CheckingAccount();
+		try {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				con = DataSourceManager.getConnection(); 
+				pstmt = con.prepareStatement(sql);
+				pstmt.setDouble(1, amount);
+				rs = pstmt.executeQuery();
+				c.setBalance(rs.getDouble("balance"));
+				c.setAccountType(rs.getString("accountType").charAt(0));
+				if ( c.getAccountType() == 'S' ) {
+					((SavingsAccount)c).withdraw(amount);
+//					String updateSql = "UPDATE Account SET balance = ? WHERE accountNum = ?";
+//					try {
+//						con = DataSourceManager.getConnection(); 
+//						pstmt = con.prepareStatement(updateSql);
+//						
+//						pstmt.setDouble(1, sa.getBalance());
+//						pstmt.setString(2, accountNum);
+//						
+//						DataSourceManager.close(pstmt, con);
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+					// savingsAccount부분
+					
+				}else {
+					ca.withdraw(amount);
+				}
+				pstmt.executeUpdate();
+			} finally {
+				DataSourceManager.close(pstmt, con);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		String updateSql = "UPDATE Account SET balance = ? WHERE accountNum = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = DataSourceManager.getConnection(); 
+			pstmt = con.prepareStatement(updateSql);
+			
+			pstmt.setDouble(1, sa.getBalance());
+			pstmt.setString(2, accountNum);
+			
+			DataSourceManager.close(pstmt, con);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
 

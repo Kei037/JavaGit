@@ -25,6 +25,7 @@ public class SavingsAccount extends Account{
 		}
 		// 현재 잔고보다 작다면 출금 승인
 		super.balance -= amount;
+		System.out.println(amount + "원 출금완료 남은금액 : " + super.balance);
 	}
 
 	public double getInterestRate() {

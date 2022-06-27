@@ -99,8 +99,8 @@ public class CustomerDao {
 			pstmt.executeUpdate();
 			
 			DataSourceManager.close(pstmt, con);
-			pstmt.close();
-			con.close();
+//			pstmt.close();
+//			con.close();
 			
 			System.out.println("INSERTED...");
 		} catch (Exception e) {

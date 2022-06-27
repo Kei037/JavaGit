@@ -129,8 +129,36 @@ public class Memo {
 	2-3. 기능적요구사항을 위해 필요한 소프트웨어 요구사항 JDK, DB (소프트웨어적 요구사항)
 	2-4. 만드는데 필요한 클레스들(클래스모델 등장)	(유스케이스 목록)
 	
+	maven.apache-org-webapp
+	아파치 톰캣8 다운로드
+	64-bit window zip 다운
+	자바파일에 톰캣 풀기
 	
+	시스템환경변수 - 시스템 변수
+	새로 만들기 = 변수이름 : CATALINA_HOME 변수값:경로
+	path에 %CATALINA_HOME%\bin넣기
+	cmd에 startup
+	tomcat - conf- logging.properties
 	
+	47번에
+	java.util.logging.ConsoleHandler.encoding = EUC-KR
 	
+	69번에 URIEncoding="UTF-8"/> 추가
+	
+	prom.xml에 18번째줄
+	<maven.compiler.source>1.11</maven.compiler.source>
+    <maven.compiler.target>1.11</maven.compiler.target>
+    
+    
+    https://mvnrepository.com/에서 servlet api 검색 Java Servlet API 3.1.0 복사
+    붙여넣기
+    
+    jsp 검색
+    JavaServer Pages(TM) API » 2.3.3 복사
+    붙여넣기
+    
+    jstl 검색
+    JSTL » 1.2 복사
+    붙여넣기
  */
 }
