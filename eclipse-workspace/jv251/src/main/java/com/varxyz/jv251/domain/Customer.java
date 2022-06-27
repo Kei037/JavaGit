@@ -11,6 +11,21 @@ public class Customer {
 	private String password;
 	private List<Account> accountList;
 	
+	
+	public Customer(String name, String ssn, String phone, String userId, String password) {
+		super();
+		this.name = name;
+		this.ssn = ssn;
+		this.phone = phone;
+		this.userId = userId;
+		this.password = password;
+	}
+	
+//	public Customer(String name, String ssn, String phone, String userId, String password) {
+//		
+//	}
+	
+	
 	public Customer() {
 		
 	}
