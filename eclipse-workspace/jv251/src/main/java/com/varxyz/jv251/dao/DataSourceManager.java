@@ -38,8 +38,6 @@ public class DataSourceManager {
 		
 		
 		System.out.println("JDBC_URL = " + JDBC_URL);
-		System.out.println("JDBC_USER = " + JDBC_USER);
-		System.out.println("JDBC_PASSWD = " + JDBC_PASSWD);
 	}
 	
 	public static Connection getConnection() throws SQLException {

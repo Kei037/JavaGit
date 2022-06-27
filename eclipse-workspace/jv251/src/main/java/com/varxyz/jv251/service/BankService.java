@@ -38,8 +38,10 @@ public class BankService {
 	public void addCustomer(String name, String ssn, String phone, String userId, String passwd) {
 		if(!isCustomer(ssn)) {
 			customerService.addCustomer(customerService.createCustomer(name, ssn, phone, userId, passwd));
+		}else {
+			throw new DuplicatedEntifyException(ssn + " is duplicated.");
 		}
-		throw new DuplicatedEntifyException(ssn + " is duplicated.");
+		
 	}
 	
 	public Customer getCustomerBySsn(String ssn) {
@@ -50,31 +52,35 @@ public class BankService {
 		return customerService.getAllCustomers();
 	}
 	
-	public void addSavingsAccount(long balance, double interestRate, String ssn)
+	public void addSavingsAccount(double balance, double interestRate, String ssn)
 												throws CustomerNotFoundException {
 		SavingsAccount account = new SavingsAccount();
 		account.setAccountNum(accountService.generateAccountNum());
+		account.setBalance(balance);
 		account.setAccountType(BankService.SA);
 		account.setInterestRate(interestRate);
 		Customer customer = customerService.getCustomerBySsn(ssn);
 		if (customer != null) {
 			account.setCustomer(customer);
+			accountService.addAcount(account);
 		}else {
 			throw new CustomerNotFoundException(ssn + " not found");
 		}
 		account.setCustomer(customer);
 	}
 	
-	public void addCheckingAccount(long balance, double overdraftAmount, String ssn)
+	public void addCheckingAccount(double balance, double overdraftAmount, String ssn)
 													throws CustomerNotFoundException {
 		CheckingAccount account = new CheckingAccount();
 		account.setAccountNum(accountService.generateAccountNum());
-		account.setAccountType(BankService.SA);
+		account.setBalance(balance);
+		account.setAccountType(BankService.CA);
 		account.setOverdraftAmount(overdraftAmount);
 		
 		Customer customer = customerService.getCustomerBySsn(ssn);
 		if (customer != null) {
 			account.setCustomer(customer);
+			accountService.addAcount(account);
 		}else {
 			throw new CustomerNotFoundException(ssn + " not found");
 		}

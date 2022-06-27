@@ -23,6 +23,7 @@ public class AccountService {
 	public List<Account> findAllAccounts() {
 		return accountDao.findAllAccounts();
 	}
+	
 	/**
 	 * XXX-XX-XXXX 형식의 계좌번호 생성
 	 * 계좌번호를 만들어주는 메소드
