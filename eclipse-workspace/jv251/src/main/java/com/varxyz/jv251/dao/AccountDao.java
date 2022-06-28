@@ -161,7 +161,6 @@ public class AccountDao {
 					account.setRegDate(rs.getTimestamp("regDate"));
 					account.setAccountType(rs.getString("accountType").charAt(0));
 					accountList.add(account);
-					
 				}
 			} finally {
 				DataSourceManager.close(rs, pstmt, con);

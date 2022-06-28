@@ -31,10 +31,10 @@ public class BankServiceTest {
 		
 		
 		//4.고객 계좌 목록 확인
-		List<Account> myList = service.getfindAccountsBySsn(ssn);
-		for ( Account account : myList ) {
-			System.out.println(account);
-		}
+//		List<Account> myList = service.getfindAccountsBySsn(ssn);
+//		for ( Account account : myList ) {
+//			System.out.println(account);
+//		}
 //		9708241234567
 		//등록된 모든 계좌 조회
 //		List<Account> aList = service.getfindAccountsBySsn(ssn);

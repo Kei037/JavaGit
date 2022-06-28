@@ -35,9 +35,6 @@ public class CustomerDao {
 				}
 			} finally {
 				DataSourceManager.close(rs, pstmt, con);
-//				rs.close();
-//				pstmt.close();
-//				con.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
