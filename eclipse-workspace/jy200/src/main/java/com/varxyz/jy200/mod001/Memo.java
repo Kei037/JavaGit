@@ -215,6 +215,7 @@ public class Memo {
     	
     	ASP.NET, Servlet/JSP  <-웹 컴포넌트
     			 tomcat 	<- 웹 컨테이너
+    			 
     웹 컨테이너
     	- 웹 컴포넌트(Servlet/JSP, 등) 실행 관리를 위한 프레임워크
     	  ex) 톰캣, 레진, Glassfish 등
@@ -223,14 +224,46 @@ public class Memo {
     	- 요청에 대한 멀티 스레딩 지원
     	- 보안 및 오류에 대한 처리 지원
     	
+    Servlet 인터페이스와 서블릿 라이프사이클
+    	init()/service()/destroy()/getServletConfig()...
+    	초기화 / 기능정하기  / 
+		1. 요청에 의해 특정 서블릿 호출
+		2. 해당 서블릿 생성 및 로드
+		3. init() 메소드 호출	(최초 1회 호출)
+    	4. service() 메소드 호출	(doGet, doPost, 등)
+    	5. destroy() 메소드 호출	(소멸직전에 1번 호출)
+    	
+    Tomcat
+    	webapps
+    		root	(webapp)
+    		jv300	(webapp)
+    			mod003
+    				abc.html
+    				(abc.view = classes/mod003/AbcServlet.class) 논리상 여기에 위치
+    			WEB-INF
+    				web.xml
+    				classes
+    					com.varxyz.jv300
+    					mod003
+    						AbcServlet.class
+    						
+    WEB-INF/classes -> servlet/c.v.jv300~ -> mod003/abc.view
+    jv300을 jv300.war로 압축하여 서버에 올리면 서버가 컴파일
     
     
+    Servlet 정의
+    <servlet>
+  		<servlet-name>CountTest</servlet-name> 
+  		<servlet-class>com.varxyz.jv300.mod002.CountTest</servlet-class> 파일이름이지만 name으로 정의
+  	</servlet>
+    
+    <servlet-mapping>
+  		<servlet-name>CountTest</servlet-name> 서블릿의 이름을 넣어 불러옴
+  		<url-pattern>/hello.view</url-pattern> 
+  	</servlet-mapping>
     
     
-    
-    
-    
-    
+    Servlet 만들고 urlmapping 변경하기
     
     
     

@@ -22,6 +22,5 @@ public class HelloServlet extends HttpServlet {
 		out.println("<p> 동시성문제 </p>");
 		out.println("</body></html>");
 		out.close();
-		
 	}
 }
