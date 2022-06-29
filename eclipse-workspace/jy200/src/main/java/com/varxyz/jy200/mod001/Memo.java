@@ -233,6 +233,22 @@ public class Memo {
     	4. service() 메소드 호출	(doGet, doPost, 등)
     	5. destroy() 메소드 호출	(소멸직전에 1번 호출)
     	
+    회원가입 폼(add_user.html)
+    	회원 아이디	: uesrId
+    	비밀번호		: passwd
+    	이름			: userName
+    	주민번호		: ssn (앞의 6자리만)
+    	이메일1		: email (아이디)
+    	이메일2		: email2(메인도메인 ex: naver.com. gmail.com....)
+    	관심분야		: concerns(체크박스 : 다중 선택가능, ex: Java, Servlet/JSP, EJB, Android, Spring..)
+    
+    회원가입 서블릿(AddUserServlet.java)
+    	회원이 등록한 정보를 받아 회원가입에서 입력한 정보를 출력
+    
+    회원가입 폼 작성시, 스크립트나 css 사용가능
+    체크박스처럼 하나 이상의 값이 전달되는 경우 서블릿에서 파라메터 정보 받는 법
+    	String[] concerns = request.getParameterValues("concerns");
+    
     Tomcat
     	webapps
     		root	(webapp)

@@ -1,0 +1,23 @@
+@charset "UTF-8";
+html, body { padding: 0 }
+
+form {
+	text-align: center;
+}
+
+p {
+	
+}
+
+span {
+	text-align: left;
+}
+
+input {
+	position: relative;
+}
+
+select {
+	width: 171px;
+	height: 21px;
+}
