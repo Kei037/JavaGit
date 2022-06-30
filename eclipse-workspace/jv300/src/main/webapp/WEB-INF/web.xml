@@ -5,12 +5,21 @@
 		version="3.1">
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<servlet-class>com.varxyz.jv300.mod005.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<url-pattern>/hello.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
   	<servlet-name>CountTest</servlet-name>
   	<servlet-class>com.varxyz.jv300.mod002.CountTest</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>CountTest</servlet-name>
-  	<url-pattern>/hello.view</url-pattern>
+  	<url-pattern>/hello2.view</url-pattern>
   </servlet-mapping>
   
   <servlet>

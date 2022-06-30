@@ -6,27 +6,27 @@
 <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-<form action="add_user.do" method="get">
+<form action="user.do" method="get">
 	<h2>회원가입</h2>
-	<p><span>회원아이디</span><br><input type="text" name="userId"/></p>
-	<p><span>비밀번호</span><br><input type="password" name="passwd"/></p>
-	<p><span>이름</span><br><input type="text" name="userName"/></p>
-	<p><span>주민번호</span><br><input type="text" name="ssn"/></p>
-	<p><span>이메일1</span><br><input type="text" name="email"/></p>
-	<p><span>이메일2</span><br><input type="text" name="email2"/>@
-	<select>
+	<div class='signup'>
+	<span>회원아이디</span><br><input type="text" name="userId"/>
+	<span>비밀번호</span><br><input type="password" name="passwd"/>
+	<span>이름</span><br><input type="text" name="userName"/>
+	<span>주민번호</span><br><input type="text" name="ssn"/>
+	<span>이메일1</span><br><input type="text" name="email"/>
+	<span>이메일2</span><br><input type="text" name="email2"/>@
+	<select>	
 		<option value="" selected>선택</option>
 		<option value="google">gmail.com</option>
 		<option value="naver">naver.com</option>
 		<option value="daum">daum.net</option>
-	</select></p>
-	<br>
+	</select>
 	관심분야<input type="checkbox" name="concerns" value="Java"/>Java
 	<input type="checkbox" name="concerns" value="Servlet/JSP"/>Servlet/JSP
 	<input type="checkbox" name="concerns" value="EJB"/>EJB
 	<input type="checkbox" name="concerns" value="Android"/>Android
 	<input type="checkbox" name="concerns" value="Spring"/>Spring
-	<br>
+	</div>
 	<input type="submit" value="확인"/>
 </form>
 </body>
