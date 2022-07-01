@@ -19,9 +19,9 @@ public class AddUserServlet extends HttpServlet {
 	private UserService userService;
 	
 	public void init(ServletConfig config) throws ServletException {
-//		String season_list = getInitParameter("userId");
-//		if(season_list == null) {
-//			season_list = "none";
+//		userService = config.get
+//		if(userService == null) {
+//			userService = ;
 //		}
 		
 	}
@@ -39,6 +39,7 @@ public class AddUserServlet extends HttpServlet {
 		String email2 = request.getParameter("email2");
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
+		
 		
 		// 2. 유효성 검증 및 변환
 		List<String> errorMsgs = new ArrayList<>();
@@ -63,6 +64,15 @@ public class AddUserServlet extends HttpServlet {
 		user.setAddr(addr1 + " " + addr2);
 		
 //		userService.addUser(user);
+		
+		request.setAttribute("userId", userId);
+		request.setAttribute("passwd", passwd);
+		request.setAttribute("userName", userName);
+		request.setAttribute("ssn", ssn);
+		request.setAttribute("email1", email1);
+		request.setAttribute("email2", email2);
+		request.setAttribute("addr1", addr1);
+		request.setAttribute("addr2", addr2);
 		
 		dispatcher = request.getRequestDispatcher("/sucess/sucess.jsp");
 		dispatcher.forward(request, response);

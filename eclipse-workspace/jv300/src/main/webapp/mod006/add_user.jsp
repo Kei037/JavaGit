@@ -17,9 +17,9 @@
 	<p>이메일<br><input type="text" name="email1"/>@
 	<select name="email2">	
 		<option value="" selected>선택</option>
-		<option value="google">gmail.com</option>
-		<option value="naver">naver.com</option>
-		<option value="daum">daum.net</option>
+		<option value="google.com">gmail.com</option>
+		<option value="naver.com">naver.com</option>
+		<option value="daum.net">daum.net</option>
 	</select></p>
 	<br>
 	<p>관심분야<input type="checkbox" name="concerns" value="Java"/>Java

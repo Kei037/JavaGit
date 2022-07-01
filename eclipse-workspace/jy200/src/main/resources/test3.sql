@@ -2,7 +2,7 @@ use jv250;
 
 show tables;
 
-select * from Customer;
+select * from CustomerIndex;
 
 CREATE INDEX CustomerIndex ON Customer(ssn);
 

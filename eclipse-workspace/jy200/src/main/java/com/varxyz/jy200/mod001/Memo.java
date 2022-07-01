@@ -352,12 +352,48 @@ public class Memo {
     	
     ----------------------------------------------------------------------
     
+    MVC 패턴
+    	- UI개발자와 비즈니스 개발자와의 분업 개발 제공
+    	- 동시 사용자 증가에 따른 시스템 확장성 제공
+    	- Low coupling, High cohesion을 통한 시스템 유지 보수의 편리성 제공
     
+    모델2 아키텍쳐
+    	- 썬 마이크로시스템의 베스트 가이드 라인
+    	- MVC패턴 구현을 위한 베스트 컴포넌트
+    		Model  :	(P) Java, Java Beans, EJB (S) DAO, DTO
+    		View   :		HTML, JSP, XMl		  (S) Servlet
+    		Controller:		Servlet				  (S) JSP
     
+    컨트롤러의 주요 역할
+    	서블릿에 의해 구현될 컨트롤러는 다음과 같은 역할을 처리한다.
+    	- 클라이언트의 요청 파라메터 정보를 구한다.
+    	- 요청 파라메터에 대한 유효성 검증 및 데이터 변환 작업을 처리한다.
+    	- 요청 처리에 필요한 비즈니스 오퍼레이션을 호출한다.
+    	- 요청 처리 결과에 따라 클라이언트에게 보여줄 뷰를 선택한다.
+    	
+    서블릿 커뮤니케이션
+    	- 서블릿은 다른 서블릿과의 커뮤니케이션이 일반 객체와 달리 제약적이다.
+    		- 사용자가 서블릿 객체를 직접 생성하지 않는다.
+    		- 기본적으로 특정 서비스를 위해 하나의 서블릿 인스턴스를 생성한다.
+    	- 따라서 요청 처리를 다른 자원으로 위임할 수 있는 방법이 필요하다.
     
-    
-    
-    
+    속성 Scope과 RequestDispatcher
+    	- RequestDispatcher인터페이스는 서블릿에서 다른 페이지로 포워드 할 수 있는 메소드를 제공
+    	- 속성 scope은 다른 서블릿(JSP)과 공유해야 할 데이터를 임시적으로 저장할 수 있는 기능을 제공
+    	- request, session, application, page
+    	
+    		setAttribute(String name, Object obj)
+    		getAttribute(String name)
+    		
+    		-- 서블릿 --
+    		requset.setAttribute("userName", userName);
+    		RequsetDispatcher dispatcher = request.getRequestDispatcher("success.jsp");
+    		dispatcher.forward(request, response);
+    		
+    		-- JSP --
+    		String userName = (String)request.getAttribute("userName");
+    		
+    	
     
     
     
