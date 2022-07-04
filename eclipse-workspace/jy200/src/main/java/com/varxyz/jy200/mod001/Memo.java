@@ -390,14 +390,98 @@ public class Memo {
     		RequsetDispatcher dispatcher = request.getRequestDispatcher("success.jsp");
     		dispatcher.forward(request, response);
     		
+    		requset.setAttribute("userName", userName);
+    		response.sendRedirect("success.jsp");  // 주소변화, request scope 종료
+    		
     		-- JSP --
     		String userName = (String)request.getAttribute("userName");
+    
+    <%@ page import="" session="" errorPage="" isErrorPage="" contentType="" pageEncoding="" %>
+    
+    자바빈즈(Java Beans)
+    	Bean이란 재사용과 같은 어떤 목적을 가지고 지정된 규칙에 따라 만들어진 클래스 혹은 컴포넌트
+    	규약
+    		- 빈은 인자가 없는 생성자를 가져야 한다.
+    		- 빈은 프로퍼티에 대한 네이밍 규칙을 준수해야 한다. (setter, getter)
+    		- 설정(setter) 메소드의 아규먼트와 접근(getter)메소드의 리턴타입은 동일해야 한다.
+    			public void setName(String name);
+    			public String getName();
+    			public void setFemale(boolean female);
+    			public boolean isFemaile();
+    		- 빈의 영속성을 위해 Serializable 또는 Externalizable 인터페이스를 구현할 수 있다.
+    		- 캡슐화를 유지한다.
+
+	JSP 표준 액션
+		JSP는 다양한 표준 액션 태그를 제공한다.
+		빈 관련 JSP 표준 액션 태그
+			- 자바 빈즈를 JSP페이지에서 좀 더 쉽게 사용할 수 있도록 제공된 태그
+			- <jsp:useBean>, <jsp:setProperty>, <jsp:getProperty>, <jsp:include>,
+			  <jsp:forward>, <jsp:param>
+			- <jsp:useBean id="user"
+						   class="com.varxyz.jv300.domain.User"
+						   scope="request"/>
+    		   id: 빈속성명, 구분자
+    		   class : 해당 빈에 대한 완전한 클래스명 ( 추상클래스 X )
+    		   scope : [page(default) | requset | session | application]
+    		   type : 빈 참조 타입 (폴리모피즘 적용시 부모타입 명시)
     		
-    	
-    
-    
-    
-    
+    		   <jsp:useBean id="emp"
+					   	class="com.varxyz.jv300.domain.Manager"
+					   	scope="request"
+					   	type="com.varxyz.jv300.domain.Employee"/>
+					   
+			   <jsp:setProperty id="user" property="userId"/>
+			   			name = "자바 빈이름(<jsp:useBean>의 id 속성과 동일명)
+			   			property = "빈의 set프로퍼티명"
+			   
+			   case 1)
+			   <jsp:useBean id="user"
+						   class="com.varxyz.jv300.domain.User"
+						   scope="request"/>
+			   <jsp:setProperty id="user" property="userId"/>
+			   
+			   case 2) 신규로 생성될 때만 몸체 처리
+			   <jsp:useBean id="user"
+						   class="com.varxyz.jv300.domain.User"
+						   scope="request">
+			   <jsp:setProperty id="user" property="userId"/>
+			   </jsp:useBean>
+			   
+			   <%
+			   		user.setUserId(request.getParameter("userId"));
+			   %>
+			   위의 코드는 밑의 코드로 쓸 수 있다.
+			    <jsp:setProperty id="user" property="userId"
+			    	value="<%= request.getParameter("userId") %>"/>
+			   <jsp:setProperty id="user" property="userId" param="userId"/>
+			   이 때 주의할 것은 param과 value의 경우 빈타입이 String 또는 primitive타입
+			   
+			   <jsp:setProperty name="user" property="*"/>
+			
+			<jsp:getProperty>태그
+				빈이 가지고 있는 프로퍼티 값을 JSP페이지에 출력할 때 사용
+				<jsp:getProperty name="user" property="userId"/>
+				
+    		<jsp:include> 태그
+    			현재 JSP페이지내에 지정된 페이지를 포함시킨다.      // 3 + 5 = 8
+    			<jsp:include page="/incl/banner.jsp"/>	 // 8
+    			cf) <%@ include file="..." %>			 // 3 + 5
+    		<jsp:include>				<%@ include>
+    		실행시점에 페이지에 포함			변환시점에 페이지에 포함
+    		수정시 자동 업데이트제공			수정시 자동 업데이트가 안됨
+    		정적컨텐츠, JSP, CGI포함가능 		정적컨텐츠, JSP만 가능
+    		표현식을 통해 page속성지정 가능	표현식을 통한 page속성 지정 불가능
+    		매개변수 추가 가능
+    		
+    		<jsp:param>
+    		
+    		-mypage1.jsp-
+    		<jsp:include page="header.jsp">
+    			<jsp:param name="subtitle" value="Welcome to varxyz"/>
+    		</jsp:include>
+    		
+    		-header.jsp-
+    		<img src="">${param.subtitle}
     
     
     
