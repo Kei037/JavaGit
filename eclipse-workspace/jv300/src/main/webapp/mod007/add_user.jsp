@@ -20,7 +20,7 @@
 		</jsp:include>
 	</div>
 	<div id="content-wrapper">
-		<form action="add_user.do" method="post">
+		<form action="add_user2.do" method="post">
 	<h2>회원가입</h2>
 	<div class='signup'>
 	<p>회원아이디<br><input type="text" name="userId"/></p>

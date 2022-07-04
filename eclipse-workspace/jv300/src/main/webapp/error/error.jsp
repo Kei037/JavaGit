@@ -1,6 +1,6 @@
 <%@page import="java.net.URLEncoder"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +12,7 @@
 	}
 </style>
 </head>
-<%
-String errormsg = (String)request.getAttribute("emsg");
-%>
 <body>
-
 <div id="wrapper">
 	<div id="header">
 		<jsp:include page="/incl/banner.jsp">
@@ -26,7 +22,19 @@ String errormsg = (String)request.getAttribute("emsg");
 	<div id="content-wrapper">
 		<h3> 회원가입 실패</h3>
 		<jsp:useBean id="user" class="com.varxyz.jv300.mod007.User" scope="request"/>
-		실패사유 : <%= errormsg %>
+		실패사유 :
+		<ul>
+<%
+			@SuppressWarnings("unchecked")
+			List<String> errorMsgs = (List<String>)request.getAttribute("errorMsgs");
+			for (String errorMsg : errorMsgs){
+%>
+				<li><%= errorMsg %></li>
+<%
+			}
+%>
+		</ul>
+		
 	</div>
 	<div id="footer">	
 		<%@ include file="/incl/footer.jsp" %>

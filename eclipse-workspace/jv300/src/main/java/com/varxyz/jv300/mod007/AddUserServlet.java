@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.varxyz.jv300.mod007.UserService;
 
-@WebServlet("/mod007/add_user.do")
+@WebServlet("/mod007/add_user2.do")
 public class AddUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -46,17 +46,13 @@ public class AddUserServlet extends HttpServlet {
 			errorMsgs.add("id는 필수입력 정보입니다.");
 		}else if (passwd == null || passwd.length() == 0) {
 			errorMsgs.add("비밀번호는 필수입력 정보입니다.");
-			
 		}
 		
 		RequestDispatcher dispatcher = null;
 		if(errorMsgs.size() > 0) {
-			for (String errormsg : errorMsgs) {
-				request.setAttribute("emsg", errormsg);
-			}
+			request.setAttribute("errorMsgs", errorMsgs);
 			dispatcher = request.getRequestDispatcher("/error/error.jsp");
 			dispatcher.forward(request, response);	// 해당페이지로 보낸다.
-			
 			return;
 		}
 		
