@@ -1,4 +1,4 @@
-package com.varxyz.jv300.mod007;
+package com.varxyz.jv300.mod008;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.varxyz.jv300.mod007.UserService;
+import com.varxyz.jv300.mod008.UserService;
 
-@WebServlet("/mod007/add_user2.do")
+@WebServlet("/mod008/add_user3.do")
 public class AddUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -56,8 +56,6 @@ public class AddUserServlet extends HttpServlet {
 			dispatcher.forward(request, response);	// 해당페이지로 보낸다.
 			return;
 		}
-		
-		
 		
 		User user = new User();
 		user.setUserId(userId);

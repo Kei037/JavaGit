@@ -483,9 +483,160 @@ public class Memo {
     		-header.jsp-
     		<img src="">${param.subtitle}
     
+    EL (Expression Language)
+    	- Since JSP2.0 스펙에서 EL추가
+    	- EL은 크게 두가지 형태로 사용
+    		- 커스텀 태그나 액션 태그의 속성값으로 사용
+    		- JSP페이지내에서 텍스트 출력시 사용
+    	- Syntax : ${addr.city}, ${user.userId}
+    	
+    	JSP액션태그에서
+    		<jsp:include page="/user/${user.id}/details.jsp"/> => /user/java/details.jsp
+    	HTML 출력시
+    		<h3>Welcome! ${user.userName} 님 </h3> => <h3> Welcome 유비님 </h3>
+    	커스텀 태그 속성값으로
+    		<c:set var="name" value="${user.userName}" />
+    	
+    	${left.right}
+    		left : EL 내장객체, 자바 빈, Map 중의 하나
+    		right : 빈의 경우 프로퍼티, Map의 경우 key값
+    		
+    		${user.userId} = ${user["userId"]}
+    		${requestScope.user.userId}  // requestScope은 EL 내장객체
+    		// 맵
+    		${nationMap.kr} = ${nationMap["kr"]}
+    		${header.host} = ${header{"host"]}
+    		// 배열
+    		${nation[0]} = ${nations["0"]}
+    		
+    		// List 처리
+    		=> Servlet
+    		List<String> hobbies = new ArrayList<String>();
+    		hobbies.add("travel");
+    		hobbies.add("drive");
+    		
+    		Map<String, String> teachers = new HashMap<String, String>();
+    		teachers.put("java", "유비");
+    		
+    		request.setAttribute("hobbies", hobbies);
+    		request.setAttribute("hobbies", teachers);
+    		
+    		=> JSP
+    			Your first hobby is ${hobby[0]}
+     			Your first teacher is ${teachers["java"]}
     
+    EL 내장 객체
+    	- pageScope / requestScope / sessionScope / applicationScope
+    	- param ${param.userName}
+    	- paramValues ex) ${paramValues.fruit[0]}
+    	- header / headerValues
+    	- cookie ex) ${cookie.userName.value}
+    				=> if(cookie[i].getName().equals("userName")){
+    			  		out.prinln(cookie[i]
+  						}
+  		- initParam
+  		- pageContext ex) ${pageContext.request.method} = ${requestScope.method}
+  	
+  	EL 연산
+  		- ${ 1 + 2 * 4 } => 9
+  		- ${ "1" + 10 }  => 11
+  		- ${ null + 1 }  => 1
+  		- ${ 3 div 4 }   => 0.75
+  		- ${ 3 / 2 }     => 1.5
+  		- ${ 32 % 10 }   => 2
+  		- ==, eq 		 => 같다
+  		- !=, ne 		 => 다르다
+  		- ${empty someVar}
+  		   someVar이 빈 객체인지 여부를 검사
+  		   true : null, "", 길이0
+  		
+  		- null값에 대한 EL처리 방법
+  			- 속성/프로퍼티가 존재하지 않을 경우 에러 대신 그 부분에 어떤 내용도 출력하지 않는다.
+  			- 산술연산에서 null값은 0으로 처리한다.
+  			- 논리연산에 null값은 false로 처리한다.
+  		EL 2.2부터 객체의 메소드를 호출할 수 있다.
+  			${x.doSomething()} => JSP 2.1이전버전에서는 컴파일에러
+  			
+  			<%
+  				Calculator calc = new Calculator();
+  				request.setAttribute("calc", calc);
+  			%>
+  			
+  			${calc.setAdd(1, 3)}
+  			${calc.getAdd()}
+  	JSTL과 커스텀 태그
+  		JSTL은 표준 태그 라이브러리(Standard Tag Libary)로서 커스텀 태그 중에서
+  		많이 사용하는 것들을 모아 JSTL 규약을 만들었다.
+  		
+  		JSTL을 사용함으로서 스크립트 코드를 사용할 때보다 간결하고 이해하기 쉬운
+  		JSP코드를 작성할 수 있다.
+  		
+  		커스텀 태그는 사용자가 직접 개발한 사용자 정의 태그로서 특정 업무나 기능을
+  		가진 태그를 개발자가 직접 커스터마이징 할 수 있다.
+  		
+    특징
+    	JSP에서 자바코드를 제거할 수 있다.
+    	커스텀 태그는 재사용이 가능하다.
+    	코드에 대한 가독성과 유지보수가 쉽다.
+    	XML기반의 태그 형식
+    	다양한 커스텀 태그 라이브러리 제공
     
+    JSTL 태그의 종류
+    	코어라이브러리 : 변수지원, 흐름제어, URL처리 (접두어 : c)
+    	XML라이브러리 : XML 제어, 변환 (접두어 : x)
+    	국제화라이브러리 : 지역, 메세지, 숫자, 날짜 형식 (접두어 : fmt)
+    	데이터베이스 라이브러리 : SQL (접두어 : sql)
+    	함수 라이브러리 : 컬렉션, String 처리 (접두어 : fn)
     
+    JSTL 코어라이브러리
+    	set / if / forEach / url / out
+    	
+    set 태그
+    	EL변수의 값이나 EL변수의 프로퍼티 값을 지정할 때 사용
+    	
+    	<c:set var="pageTitle">회원가입</c:set>
+    	
+    	<html>
+    		<head><title>${pageTitle}</title></head>
+    		...
+    	</html>
+    
+    <if, forEach, url 태그 중요>
+    if 태그
+    	자바의 if블록과 유사한 기능을 제공한다.
+    	<c:if test="조건식"> 조건이 참일 경우 실행코드 </c:if>
+    	<c:if test="${not empty errorMsgs}>에러처리를 여기서</c:if>
+    	
+    forEach 태그
+    	배열, 컬렉션, 맵의 데이터를 순차적으로 처리할 때 사용한다.
+    	<c:forEach var="message" items="${errorMsgs}">
+    		<li>${message}</li>  => EL태그(중요)
+    	</c:forEach>
+    	
+    	<c:forEach var="num" begin="1" end="10">
+    		${num} -> 1부터 10까지 값 출력
+    	</c:forEach>
+    	
+    url 태그
+    	컨텍스트 경로를 포함한 URL을 생성해 준다.
+    	value 속성은 절대경로/상대경로 모두 가능
+    	<form action='<c:url value="add_user.do"/>' method="post>
+    	<form action='/add_user.do' method="post>
+    	
+    out 태그
+    	데이터를 출력할 때 사용되는 태그로서 특수문자를 변경할 수 있는 기능을 제공한다.
+    	<c: out value="${param.email}" default="no email provided" escapeXml="true"/>
+    	<c: out ...>출력내용</c:out> 
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     
     
     

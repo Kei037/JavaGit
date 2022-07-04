@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +22,12 @@
 	</div>
 	<div id="content-wrapper">
 		<h3>회원가입되었습니다.</h3>
-		<jsp:useBean id="user" class="com.varxyz.jv300.mod007.User" scope="request"/>
+		<jsp:useBean id="user" class="com.varxyz.jv300.mod008.User" scope="request"/>
 		아이디 : <jsp:getProperty property="userId" name="user"/>
+		<c:set var="name" value="${user.userId}"/>
 		이름 : <jsp:getProperty property="userName" name="user"/>
 		<p></p>
+		
 	</div>
 	<div id="footer">	
 		<%@ include file="/incl/footer.jsp" %>
