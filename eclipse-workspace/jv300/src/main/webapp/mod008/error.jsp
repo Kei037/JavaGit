@@ -23,19 +23,9 @@
 	<div id="content-wrapper">
 		<h3> 회원가입 실패</h3>
 		<ul>
-		<c:if test="${not empty errorMsgs}">
-			<h3>다음과 같은 에러가 발생했습니다.</h3>
-			<ul>
-				<c:forEach var="errorMsg" items="${errorMsgs}">
-					<li>${errorMsg}</li>
-				</c:forEach>
-				<%-- 
-				<c:when test="">
-					<c:choose></c:choose>  		 <!-- 맞으면 choose -->
-					<c:otherwise></c:otherwise>  <!-- 아니면 otherwise -->
-				</c:when>
-				 --%>
-			</ul>
+		<c:if test="">
+			
+		
 		</c:if>
 		
 		실패사유 :
