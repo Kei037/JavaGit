@@ -16,7 +16,7 @@
 <div id="wrapper">
 	<div id="header">
 		<jsp:include page="/incl/banner.jsp">
-			<jsp:param name="subtitle" value=" mod007 : Java Beans and include" />
+			<jsp:param name="subtitle" value=" mod008 : Java Beans and include" />
 		</jsp:include>
 	</div>
 	<div id="content-wrapper">

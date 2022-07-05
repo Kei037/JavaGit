@@ -1,6 +1,6 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.util.*"%>
-<%@page import="com.varxyz.jv300.mod008.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,6 +22,7 @@
 	</div>
 	<div id="content-wrapper">
 		<h3> 회원가입 실패</h3>
+		<ul>
 		<jsp:useBean id="user" class="com.varxyz.jv300.mod008.User" scope="request"/>
 		실패사유 :
 		<ul style="list-style-type:none">
@@ -30,11 +31,12 @@
 			List<String> errorMsgs = (List<String>)request.getAttribute("errorMsgs");
 			for (String errorMsg : errorMsgs){
 %>
-				<li><%= errorMsg %></li>
-				<li>${errorMsgs[0]}</li>
+				<li>jsp빈즈 활용<%= errorMsg %></li>
+				
 <%
 			}
 %>
+		<li>EL활용 ${errorMsgs[0]}</li>
 		</ul>
 		
 	</div>
