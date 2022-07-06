@@ -18,6 +18,7 @@
 contentList
 <br>
 <form action="list_course_contents.do" method="get">
+<%--
 <c:if test="${not empty contentList}">
 	<c:forEach var="content" items="${contentList}"><br>
 		<c:forEach var="content2" items="${content}">
@@ -25,11 +26,12 @@ contentList
 		</c:forEach>
 	</c:forEach>
 </c:if>
+--%>
 
 <br>
 
-<c:forEach var="contentList" items="${contentList}">
-	${contentList}<br>
+<c:forEach var="textLines" items="${textLines}">
+	${textLines}<br>
 </c:forEach>
 
 <input type="submit" value="확인"/>

@@ -16,40 +16,75 @@ import javax.servlet.http.HttpServletResponse;
 public class ListCourseContentsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static List<String[]> contentList;
+	private static List<String> textLines;
 	
 	@SuppressWarnings("unchecked")
 	public void init(ServletConfig config) throws ServletException {
 		ServletContext context = config.getServletContext();
 		contentList = (List<String[]>)context.getAttribute("contentList");
-		contentList = tapToSpace(contentList);
+//		contentList = tapToSpace(contentList);
+		textLines = tapToSpace(contentList);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("contentList", contentList);
+//		request.setAttribute("contentList", contentList);
+		request.setAttribute("textLines", textLines);
 		request.getRequestDispatcher("list_course_contents.jsp").forward(request, response);
 	}
 	
-	private List<String[]> tapToSpace(List<String[]> contentList) {
-		if (contentList != null) {
-			for (String[] contents : contentList) {
-				for (int i = 0; i < contents.length; i++) {
-					if (contents[i].length() == 0) {
-//						contents[i] = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	
+	private List<String> tapToSpace(List<String[]> contentList) {
+		List<String> lineList = new ArrayList<>();
+		if(contentList.size() > 0) {
+			for(String[] contents : contentList) {
+				if(isEmptyLine(contents)) {
+					continue;
+				}
+				for(int i = 0; i < contents.length; i++) {
+					if(contents[i].length() == 0) {
 						contents[i] = "<span class=\"tab\">";
-						contents[contents.length - 1] = contents[contents.length -1] + "</span>";
+						contents[contents.length - 1] = contents[contents.length - 1] + "</span>";
 					}
 				}
 			}
 		}else {
-			String[] str = new String[] {"-No Data-"};
-			ArrayList<String[]> list = new ArrayList<>();
-			list.add(str);
-			contentList = list;
+			lineList.add("-No Data-");
 		}
-		
-		
-		return contentList;
+		String line = "";
+		for(String[] contents : contentList) {
+			for(String s : contents) {
+				line += s;
+			}
+			lineList.add(line);
+			line="";
+		}
+		return lineList;
 	}
-
+	
+	
+//	private List<String[]> tapToSpace(List<String[]> contentList) {
+//		if (contentList != null) {
+//			for (String[] contents : contentList) {
+//				for (int i = 0; i < contents.length; i++) {
+//					if (contents[i].length() == 0) {
+//						contents[i] = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+//					}
+//				}
+//			}
+//		}else {
+//			String[] str = new String[] {"-No Data-"};
+//			ArrayList<String[]> list = new ArrayList<>();
+//			list.add(str);
+//			contentList = list;
+//		}
+//		
+//		
+//		return contentList;
+//	}
+		
+	private boolean isEmptyLine(String[] contents) {
+		return false;
+	}
+	
 }

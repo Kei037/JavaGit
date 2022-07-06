@@ -20,34 +20,7 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class initializeDataSource implements ServletContextListener {
-	private static final String JDBC_URL;
-	private static final String JDBC_USER;
-	private static final String JDBC_PASSWD;
-	
-	static {
-		Properties props = new Properties();
-		try {
-			props.load(new FileInputStream("jdbc.properties"));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			Class.forName(props.getProperty("JDBC_DRIVER"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		JDBC_URL = props.getProperty("JDBC_URL");
-		JDBC_USER = props.getProperty("JDBC_USER");
-		JDBC_PASSWD = props.getProperty("JDBC_PASSWD");
-	}
-	
-	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWD);
-	}
+
 	
 	@Override
     public void contextInitialized(ServletContextEvent event)  {
