@@ -17,7 +17,7 @@
 <div id="wrapper">
 	<div id="header">
 		<jsp:include page="/incl/banner.jsp">
-			<jsp:param name="subtitle" value="<%=URLEncoder.encode(\"mod009 : 자바빈즈\", \"UTF-8\") %>" />
+			<jsp:param name="subtitle" value="<%=URLEncoder.encode(\"mod008 : 자바빈즈\", \"UTF-8\") %>" />
 		</jsp:include>
 	</div>
 	<div id="content-wrapper">

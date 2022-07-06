@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -22,13 +21,12 @@
 	</div>
 	<div id="content-wrapper">
 		<h3>회원가입되었습니다.</h3>
-		
 		EL: ${user.userId}<br>
 		
 	</div>
-<div id="footer">	
-	<%@ include file="/incl/footer.jsp" %>
-</div>
+	<div id="footer">	
+		<%@ include file="/incl/footer.jsp" %>
+	</div>
 </div>
 </body>
 </html>

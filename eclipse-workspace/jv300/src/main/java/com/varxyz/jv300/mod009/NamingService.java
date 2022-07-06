@@ -8,7 +8,7 @@ public class NamingService {
 	private Map<String, Object> nameValuePairs;
 	
 	private NamingService() {
-		nameValuePairs = new HashMap<String, Object>(); 
+		nameValuePairs = new HashMap<String, Object>();		
 	}
 	
 	public static NamingService getInstance() {

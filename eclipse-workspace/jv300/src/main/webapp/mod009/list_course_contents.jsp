@@ -28,8 +28,6 @@ contentList
 </c:if>
 --%>
 
-<br>
-
 <c:forEach var="textLines" items="${textLines}">
 	${textLines}<br>
 </c:forEach>
