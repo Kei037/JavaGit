@@ -14,25 +14,24 @@ public class LoginServlet extends HttpServlet {
 	
 	private UserService userService;
 	
-	public void Init() {
+	public void init() {
 		userService = new UserService(new UserDao());
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+			throws ServletException, IOException {	
+		request.getRequestDispatcher("login.jsp").forward(request, response);		
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		String userId = request.getParameter("userId");
 		String passwd = request.getParameter("passwd");
-		System.out.println(userId);
-		System.out.println(passwd);
-		// 요청 파라메터 검증
-		// ...
-		if(!userService.isValidUser (userId, passwd)){
+		
+		//요청 파라메터 검증
+		//~....
+		if(!userService.isValidUser(userId, passwd)) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			return;
 		}
@@ -40,7 +39,6 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("userId", userId);
 		response.sendRedirect("mypage");
-		
 	}
 
 }

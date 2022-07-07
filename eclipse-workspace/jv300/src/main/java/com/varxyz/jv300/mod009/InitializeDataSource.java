@@ -10,10 +10,10 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class InitializeDataSource implements ServletContextListener {
-private static final String JDBC_FILE_PATH="/WEB-INF/classes/jdbc.properties";
+	private static final String JDBC_FILE_PATH="/WEB-INF/classes/jdbc.properties";
 	
 	@Override
-    public void contextInitialized(ServletContextEvent event)  { 
+	public void contextInitialized(ServletContextEvent event)  { 
     	ServletContext context = event.getServletContext();
     	InputStream is = null;
     	try {

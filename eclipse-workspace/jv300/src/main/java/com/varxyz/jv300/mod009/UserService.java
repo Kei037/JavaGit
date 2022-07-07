@@ -11,7 +11,6 @@ public class UserService{
 	}
 	
 	public UserService() {
-		
 	}
 
 	public void addUser(User user) {
@@ -19,7 +18,7 @@ public class UserService{
 	}
 	
 	public List<User> findUser() {
-		return userDao.findUser();
+		return userDao.findAllUser();
 	}
 
 	public static UserService getInstance() {

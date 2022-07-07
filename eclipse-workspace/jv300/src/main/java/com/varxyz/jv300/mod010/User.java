@@ -9,9 +9,11 @@ public class User implements Serializable{
 	private String passwd;
 	private String userName;
 	private String ssn;
-	private String email;
+	private String email;	
 	private String addr;
 	private List<User> userList;
+	
+	
 	
 	public List<User> getUserList() {
 		return userList;
@@ -19,6 +21,10 @@ public class User implements Serializable{
 
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public User() {

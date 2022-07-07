@@ -18,19 +18,20 @@ public class FindUserServlet extends HttpServlet {
 	private UserService userService;
 	
 	public void init(ServletConfig config) throws ServletException {
-		userService = new UserService(new UserDao());
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		userService = UserService.getInstance();
+		UserService userService = UserService.getInstance();
+		userService = new UserService(new UserDao());
 		List<User> userList = userService.findUser();
 		request.setAttribute("userList", userList);
 		
 		RequestDispatcher dispatcher = null;
-		dispatcher = request.getRequestDispatcher("/find_user.jsp");
-		dispatcher.forward(request, response);
+		dispatcher = request.getRequestDispatcher("find_user.jsp");
+		dispatcher.forward(request, response);	
 	}
 
 }

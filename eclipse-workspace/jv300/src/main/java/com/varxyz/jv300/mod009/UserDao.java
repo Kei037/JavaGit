@@ -38,36 +38,33 @@ public class UserDao {
 		}
 	}
 	
-	public List<User> findUser() {
+	public List<User> findAllUser() {
 		String sql = "SELECT * FROM Player";
 		List<User> userList = new ArrayList<User>();
-		
 		try {
 			Connection con = null;
-			PreparedStatement pstmt = null;
+			PreparedStatement pstmt = null;	
 			ResultSet rs = null;
 			try {
 				con = datasource.getConnection();
 				pstmt = con.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					User user = new User();
-					user.setUserId(rs.getString("userId"));
-					user.setUserId(rs.getString("userId"));
-					user.setPasswd(rs.getString("passwd"));
-					user.setUserName(rs.getString("userName"));
-					user.setSsn(rs.getString("ssn"));
-					user.setEmail(rs.getString("email"));
-					user.setAddr(rs.getString("addr"));
-					userList.add(user);
+					User c = new User();
+					c.setUserId(rs.getString("userId"));
+					c.setPasswd(rs.getString("passwd"));
+					c.setUserName(rs.getString("userName"));
+					c.setSsn(rs.getString("ssn"));
+					c.setEmail(rs.getString("email"));
+					c.setAddr(rs.getString("addr"));
+					userList.add(c);
 				}
-			} finally {
+			}finally {
 				datasource.close(rs, pstmt, con);
 			}
-		} catch (Exception e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return userList;
 	}
 	

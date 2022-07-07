@@ -10,9 +10,8 @@ public class User implements Serializable{
 	private String passwd;
 	private String userName;
 	private String ssn;
-	private String email;
+	private String email;	
 	private String addr;
-	private List<User> userList;
 	
 	public User() {
 		

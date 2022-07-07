@@ -10,24 +10,22 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/mod010/mypage")
 public class MyPageServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;             
 	
 	private UserService userService;
 	
 	public void init() {
 		userService = new UserService(new UserDao());
 	}
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
 		String userId = (String)session.getAttribute("userId");
-		if (userId == null) {
+		if(userId == null) {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			return;
 		}
-		
 		request.getRequestDispatcher("mypage.jsp").forward(request, response);
 	}
 
