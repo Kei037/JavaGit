@@ -1,8 +1,7 @@
-package com.varxyz.jv300.mod009;
+package com.varxyz.jv300.mod010;
 
 import java.io.Serializable;
 import java.util.List;
-
 
 public class User implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -14,6 +13,14 @@ public class User implements Serializable{
 	private String addr;
 	private List<User> userList;
 	
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
+
 	public User() {
 		
 	}

@@ -51,6 +51,7 @@ private static final long serialVersionUID = 1L;
 			dispatcher.forward(request, response);
 			return;
 		}
+		
 		User user = new User();
 		user.setUserId(userId);
 		user.setPasswd(passwd);
@@ -62,12 +63,6 @@ private static final long serialVersionUID = 1L;
 		//3. 비즈니스 서비스 호출
 		userService.addUser(user);
 		request.setAttribute("user", user);
-		
-		//4. NextPage
-		request.setAttribute("userName", userName);
-		request.setAttribute("passwd", passwd);
-		request.setAttribute("userId", userId);
-		request.setAttribute("ssn", ssn);
 		
 		dispatcher = request.getRequestDispatcher("/mod009/sucess.jsp");
 		dispatcher.forward(request, response);

@@ -1,4 +1,4 @@
-package com.varxyz.jv251.domain;
+ package com.varxyz.jv251.domain;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.varxyz.jv300.mod009;
+package com.varxyz.jv300.mod010;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.varxyz.jv300.mod009.User;
 
 public class UserDao {
 	private DataSource datasource;
@@ -53,7 +55,6 @@ public class UserDao {
 				while(rs.next()) {
 					User user = new User();
 					user.setUserId(rs.getString("userId"));
-					user.setUserId(rs.getString("userId"));
 					user.setPasswd(rs.getString("passwd"));
 					user.setUserName(rs.getString("userName"));
 					user.setSsn(rs.getString("ssn"));
@@ -69,6 +70,31 @@ public class UserDao {
 		}
 		
 		return userList;
+	}
+	
+	public boolean isValidUser(String userId, String passwd) {
+		String sql = "SELECT * FROM Player WHERE userId=? AND passwd=?";
+		boolean test = true;
+		try {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				con = datasource.getConnection();
+				pstmt = con.prepareStatement(sql);			
+				pstmt.setString(1, userId);
+				pstmt.setString(2, passwd);
+				rs = pstmt.executeQuery();
+				if(!rs.next()) {
+					test = false;
+				}
+			} finally {
+				datasource.close(rs, pstmt, con);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return test;
 	}
 	
 }

@@ -117,7 +117,7 @@ public class AccountDao {
 	
 	/**
 	 * 등록된 모든 계좌 목록 조회
-	 * @return 		// 수정중
+	 * @return
 	 */
 	public List<Account> findAllAccounts() {
 		String sql = "SELECT * FROM Account";

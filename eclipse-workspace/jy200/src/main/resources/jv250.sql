@@ -64,12 +64,23 @@ WHERE Account.customerId = Customer.cid AND Customer.ssn = '961578-1523267';
 SELECT * FROM Account a INNER JOIN Customer c ON a.customerId = c.cid
 WHERE c.ssn = '970824-1234567';
 
+DELETE TABLE Player;
+DELETE FROM Player WHERE uid=5001;
 
+CREATE TABLE Player (
+	uid			BIGINT			PRIMARY KEY AUTO_INCREMENT,
+	userId		VARCHAR(20)		NOT NULL,
+	passwd		VARCHAR(20)		NOT NULL,
+	userName	VARCHAR(20)		NOT NULL,
+	ssn			VARCHAR(20)		NOT NULL,
+	email		VARCHAR(20)		NOT NULL,
+	addr		VARCHAR(20)		NOT NULL,
+	regDate		TIMESTAMP		NOT NULL	DEFAULT CURRENT_TIMESTAMP
+) AUTO_INCREMENT = 5001;
 
+INSERT INTO Player (userId, passwd, userName, ssn, email, addr) VALUES ('testId', '1234', '유비', '901212-1234567', 'admin@naver.com', '대구광역시 달성군 대실역북로');
 
-
-
-
+SELECT * FROM Player;
 
 
 
