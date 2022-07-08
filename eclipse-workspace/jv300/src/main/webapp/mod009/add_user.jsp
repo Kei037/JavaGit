@@ -35,12 +35,8 @@
 		<option value="daum.net">daum.net</option>
 	</select></p>
 	<br>
-	<p>관심분야<input type="checkbox" name="concerns" value="Java"/>Java
-	<input type="checkbox" name="concerns" value="Servlet/JSP"/>Servlet/JSP
-	<input type="checkbox" name="concerns" value="EJB"/>EJB
-	<input type="checkbox" name="concerns" value="Android"/>Android
-	<input type="checkbox" name="concerns" value="Spring"/>Spring
-	</p>
+	<p>주소<br><input type="text" name="addr1"></p>
+	<p>상세주소<br><input type="text" name="addr2"></p>
 	</div>
 	<input type="submit" value="확인"/>
 </form>

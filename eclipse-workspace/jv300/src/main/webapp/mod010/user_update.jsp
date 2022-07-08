@@ -8,10 +8,12 @@
 </head>
 <body>
 <%@ include file="/incl/banner.jsp" %>
-	<form action="login" method="post">
-		아이디 : <input type="text" name="userId"/><br>
-		비밀번호 : <input type="password" name="passwd"/><br>
-		<input type="submit" value="로그인"/>
-	</form>
+<br>
+<form action="user_update" method="post">
+	아이디 : <input type="text" name="userId"/>
+	변경할 비밀번호 : <input type="password" name="passwd"/>
+	<br>
+	<input type="submit" value="확인"/>
+</form>
 </body>
 </html>

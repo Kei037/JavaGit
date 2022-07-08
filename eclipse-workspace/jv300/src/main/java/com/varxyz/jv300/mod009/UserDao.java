@@ -68,4 +68,44 @@ public class UserDao {
 		return userList;
 	}
 	
+	public void UserUpdate(String userId, String passwd) {
+		String sql = "UPDATE Player SET passwd=? WHERE userId=?";
+		try {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			try {
+				con = datasource.getConnection();; 
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, passwd);
+				pstmt.setString(2, userId);
+				pstmt.executeUpdate();
+				
+			} finally {
+				datasource.close(pstmt, con);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	public void UserDelete(String userId, String passwd) {
+		String sql = "DELETE FROM Player WHERE userId = ? ";
+		try {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			try {
+				con = datasource.getConnection();; 
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, userId);
+				pstmt.executeUpdate();
+				
+			} finally {
+				datasource.close(pstmt, con);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

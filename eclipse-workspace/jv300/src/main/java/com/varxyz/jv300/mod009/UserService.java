@@ -4,6 +4,7 @@ import java.util.List;
 
 public class UserService{
 	private static UserService service = new UserService();
+	
 	public UserDao userDao;
 	
 	public UserService(UserDao userDao) {
@@ -21,12 +22,20 @@ public class UserService{
 		return userDao.findAllUser();
 	}
 
-	public static UserService getInstance() {
+	public static UserService getService() {
 		return service;
 	}
 	
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
+	}
+
+	public void userUpdate(String userId, String passwd) {
+		userDao.UserUpdate(userId, passwd);
+	}
+
+	public void userDelete(String userId, String passwd) {
+		userDao.UserDelete(userId, passwd);
 	}
 
 }

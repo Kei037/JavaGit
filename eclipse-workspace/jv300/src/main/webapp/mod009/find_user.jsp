@@ -8,11 +8,10 @@
 </head>
 <body>
 <h3>유저리스트</h3>
-<form action="find_user.do" method="post">
-	
-
+<%@ include file="/incl/banner.jsp" %>
+<form action="find_user.do" method="get">
 	<c:forEach var="user" items="${userList}">
-		${user}<br>
+		아이디 : ${user.userId}<br>
 	</c:forEach>
 	<input type="submit" value="확인"/>
 </form>

@@ -1,7 +1,6 @@
-package com.varxyz.jv300.mod009;
+package com.varxyz.jv300.mod010;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -11,8 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/mod009/find_user.do")
-public class FindUserServlet extends HttpServlet {
+import com.varxyz.jv300.mod009.User;
+import com.varxyz.jv300.mod009.UserDao;
+import com.varxyz.jv300.mod009.UserService;
+
+
+@WebServlet("/mod010/user_update")
+public class UserUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private UserService userService;
@@ -20,18 +24,23 @@ public class FindUserServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
 		UserService userService = UserService.getService();
 		userService = new UserService(new UserDao());
-		List<User> userList = userService.findUser();
-		request.setAttribute("userList", userList);
+		
+		String userId = request.getParameter("userId");
+		String passwd = request.getParameter("passwd");
 		
 		RequestDispatcher dispatcher = null;
-		dispatcher = request.getRequestDispatcher("find_user.jsp");
-		dispatcher.forward(request, response);	
+		
+		userService.userUpdate(userId, passwd);
+		
+		dispatcher = request.getRequestDispatcher("/mod009/sucess.jsp");
+		dispatcher.forward(request, response);
+		
 	}
 
 }
