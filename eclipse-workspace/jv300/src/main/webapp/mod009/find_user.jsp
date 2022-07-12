@@ -13,7 +13,7 @@
 	<c:forEach var="user" items="${userList}">
 		아이디 : ${user.userId}<br>
 	</c:forEach>
-	<input type="submit" value="확인"/>
+<input type="submit" value="확인"/>
 </form>
 </body>
 </html>
