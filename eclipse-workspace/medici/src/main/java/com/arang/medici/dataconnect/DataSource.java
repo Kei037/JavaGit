@@ -1,4 +1,4 @@
-package com.arang.medici.storage.dataconnect;
+package com.arang.medici.dataconnect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

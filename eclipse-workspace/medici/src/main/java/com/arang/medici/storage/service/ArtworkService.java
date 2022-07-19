@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.arang.medici.storage.dao.ArtworkDao;
 import com.arang.medici.storage.domain.Artwork;
+import com.arang.medici.storage.domain.Wallet;
 
 public class ArtworkService {
 	private static ArtworkService service = new ArtworkService();
@@ -31,8 +32,13 @@ public class ArtworkService {
 		artworkDao.addArtwork(artwork);
 	}
 
-	public Artwork findArtwork(String artworkNum) {
-		return artworkDao.findArtwork(artworkNum);
+	public List<Artwork> findAllArtwork() {
+		return artworkDao.findAllArtwork();
+	}
+
+	public Wallet payment(Wallet wallet) {
+		return artworkDao.payment(wallet);
+		
 	}
 
 

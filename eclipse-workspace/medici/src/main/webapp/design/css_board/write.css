@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+#wrap {
+  position: relative;
+}
+
+.write_wrapper {
+  /* display: flex; */
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.write_wrapper h3 {
+  width: 100%;
+  height: 10%;
+  line-height: 10%;
+  margin-bottom: 30px;
+}
+
+.write_wrapper table {
+  width: 100%;
+  height: 90%;
+  padding-top: 30px;
+  border-top: 3px solid black;
+}
+
+.write_wrapper table tr:last-child {
+}
+
+.write_wrapper table tr td:first-child{
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  outline: 2px solid black;
+}
+
+.write_wrapper table tr td:last-child {
+  outline: none;
+}

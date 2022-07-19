@@ -5,8 +5,11 @@ import java.util.List;
 public class Artwork {
 	
 	private String artworkNum;
+	
+	private String userId;
 	private String storage;
-	private String storagePeiod;
+	private String startPeriod;
+	private String endPeriod;
 	private String dbService;
 	private List<Artwork> artWork;
 	
@@ -21,6 +24,14 @@ public class Artwork {
 	public void setArtworkNum(String artworkNum) {
 		this.artworkNum = artworkNum;
 	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public String getStorage() {
 		return storage;
@@ -29,13 +40,21 @@ public class Artwork {
 	public void setStorage(String storage) {
 		this.storage = storage;
 	}
-
-	public String getStoragePeiod() {
-		return storagePeiod;
+	
+	public String getStartPeriod() {
+		return startPeriod;
 	}
 
-	public void setStoragePeiod(String storagePeiod) {
-		this.storagePeiod = storagePeiod;
+	public void setStartPeriod(String startPeriod) {
+		this.startPeriod = startPeriod;
+	}
+
+	public String getEndPeriod() {
+		return endPeriod;
+	}
+	
+	public void setEndPeriod(String endPeriod) {
+		this.endPeriod = endPeriod;
 	}
 
 	public String getDbService() {

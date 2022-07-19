@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.arang.medici.storage.dao.ArtworkDao;
 import com.arang.medici.storage.domain.Artwork;
 
-@WebServlet("/service/find_artwork")
+@WebServlet("/service/storage_service1")
 public class FindArtworkServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -21,17 +21,14 @@ public class FindArtworkServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		String artworkNum = request.getParameter("artworkNum");
-		
 		ArtworkService artworkService = ArtworkService.getInstance();
 		artworkService = new ArtworkService(new ArtworkDao());
-		Artwork artwork = new Artwork();
-		artwork = artworkService.findArtwork(artworkNum);
-		request.setAttribute("artwork", artwork);
+		List<Artwork> artworkList = artworkService.findAllArtwork();
+		request.setAttribute("artworkList", artworkList);
 		
 		RequestDispatcher dispatcher = null;
-		dispatcher = request.getRequestDispatcher("find_artwork.jsp");
-		dispatcher.forward(request, response);	
+		dispatcher = request.getRequestDispatcher("/service/storage_service1.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
