@@ -7,8 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.varxyz.banking.dao.AccountDao;
 import com.varxyz.banking.dao.CustomerDao;
-
-
+import com.varxyz.banking.service.AccountService;
+import com.varxyz.banking.service.CustomerService;
 
 @Configuration
 public class DataSourceConfig {
@@ -39,5 +39,15 @@ public class DataSourceConfig {
 	@Bean
 	public AccountDao accountDao() {
 		return new AccountDao(dataSource());
+	}
+	
+	@Bean
+	public CustomerService customerService() {
+		return new CustomerService();
+	}
+	
+	@Bean
+	public AccountService accountService() {
+		return new AccountService();
 	}
 }

@@ -1,5 +1,10 @@
 package com.varxyz.banking;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -7,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.varxyz.banking.command.AccountCommand;
 import com.varxyz.banking.dao.AccountDao;
 import com.varxyz.banking.dao.CustomerDao;
 import com.varxyz.banking.domain.Account;
@@ -21,45 +27,41 @@ public class AddAccountController {
 	 * 대공사중 - 관련 Class (Account, AccountCommand, AccountDao, AccountService)
 	 * + add_account.jsp
 	 */
+	
 	@Autowired
-//	private AccountService accountService;
+	private AccountService accountService;
 	
 	@GetMapping("/banking/add_account")
-	public String addCustomerForm() {
+	public String addAccountForm() {
 		return "banking/add_account";
 	}
-	/*
+	
 	@PostMapping("/banking/add_account")
-	public String addCustomer(AccountCommand accountCommand, Customer customer, Model model) {
+	public String addAccount(HttpServletRequest request ,
+			AccountCommand accountCommand, Model model) {
+		HttpSession session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		double balance = Double.valueOf(request.getParameter("balance"));
 		model.addAttribute("accountCommand", accountCommand);
-		model.addAttribute("customer", customer);
-		accountCommand.setCustomer(customer);			// customer의 이메일을 set
+		
 		accountCommand.setAccountNum("123-45-6789");	// 임의 계좌번호 set
-		
-		AnnotationConfigApplicationContext context =
-				new AnnotationConfigApplicationContext(DataSourceConfig.class);
-		
-		//  Customer테이블에 email이 존재하면 그 row값들을 가져온다.
-		CustomerDao cdao = context.getBean("customerDao", CustomerDao.class);
-		Customer customer2 = cdao.findCustomerByEmail(accountCommand.getCustomer().getEmail());
-		
-		System.out.println(cdao.findCustomerByEmail(accountCommand.getCustomer().getEmail()));
-		System.out.println(customer2.getCid());
-		accountCommand.setCustomer(customer2);		// 가져온 row값을 새롭게 set
-		
-		//  예금인지 저축인지 구분
-		if (accountCommand.getAccountType() == 'C') {
-			accountCommand = new CheckingAccount();
-		}else if(accountCommand.getAccountType() == 'S') {
-			accountCommand = new SavingsAccount();
-		}
-		
+		accountCommand.setEmail(email);
 		//	계좌생성
-		accountService.addAccount(account);
+		accountCommand.setBalance(balance);
+		accountService.addAccount(accountCommand);
 		System.out.println("-inserted-");
-		context.close();
 		
 		return "banking/success_add_account";
-		
-	} */
+	}
+	
+	
+	@PostMapping("/banking/find_account")
+	public String findAccount(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		System.out.println("find_account = " + accountService.findAccountByCustomerId(email));
+		List<AccountCommand> accountList = accountService.findAccountByCustomerId(email);
+		request.setAttribute("accountList", accountList);
+		return "banking/success_find_account";
+	}
 }
