@@ -22,7 +22,6 @@ public class ServletConfigTestServlet extends HttpServlet {
 //		Seasons = season_list.split(", ");
 //	}
 	
-	@Override
 	public void init() throws ServletException  {
 		String season_list = getInitParameter("season-list");
 		if(season_list == null) {
@@ -31,7 +30,6 @@ public class ServletConfigTestServlet extends HttpServlet {
 		Seasons = season_list.split(", ");
 	}
 	
-	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");

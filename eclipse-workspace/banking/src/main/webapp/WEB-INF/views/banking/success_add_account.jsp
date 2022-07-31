@@ -12,5 +12,6 @@
 	<!-- <label>회원ID : </label>${account.customer.email}<br> -->
 	<label>계좌종류 : </label>${accountCommand.accountType}<br>
 	<label>초기입금금액 : </label>${accountCommand.balance}
+	<a href="/banking/banking/index">My page</a>
 </body>
 </html>

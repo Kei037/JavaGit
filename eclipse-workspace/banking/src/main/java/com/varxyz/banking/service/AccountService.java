@@ -2,18 +2,20 @@ package com.varxyz.banking.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.varxyz.banking.DataSourceConfig;
 import com.varxyz.banking.command.AccountCommand;
 import com.varxyz.banking.dao.AccountDao;
 import com.varxyz.banking.dao.CustomerDao;
-import com.varxyz.banking.domain.Account;
 import com.varxyz.banking.domain.CheckingAccount;
 import com.varxyz.banking.domain.Customer;
 import com.varxyz.banking.domain.SavingsAccount;
 
-public class AccountService {
+public class AccountService implements AServiceInterface {
+	
+	@Autowired
 	private AccountDao accountDao;
 	
 	public AccountService() {
@@ -47,13 +49,18 @@ public class AccountService {
 		context.close();
 	}
 	
-	public List<AccountCommand> findAccountByCustomerId(String email) {
+	public List<AccountCommand> getAccounts(String email) {
 		AnnotationConfigApplicationContext context =
 				new AnnotationConfigApplicationContext(DataSourceConfig.class);
 		CustomerDao cdao = context.getBean("customerDao", CustomerDao.class);
-		AccountDao adao = context.getBean("accountDao", AccountDao.class);
 		
 		Customer findCustomer =  cdao.findCustomerByEmail(email);
-		return adao.findAccountByCustomerId(findCustomer.getCid());
+		return accountDao.getAccounts(findCustomer.getCid());
 	}
+	
+	public void doTransfer(double money, String withdrawAccountNum, String depositAccountNum) {
+		accountDao.doTransfer(money, withdrawAccountNum, depositAccountNum);
+		
+	}
+	
 }

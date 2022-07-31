@@ -4,5 +4,5 @@
 html,body { height: 100%; }
 body { font-family: 'Noto Sans KR', sans-serif; background: lemonchiffon;}
 ul, li { list-style: none; }
-a { color: #666666; }
+a { color: #666666; text-decoration:none; }
 h1, h2, h3, h4, h5, h6 { line-height: 1; }

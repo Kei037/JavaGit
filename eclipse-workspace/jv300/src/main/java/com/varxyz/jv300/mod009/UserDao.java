@@ -19,7 +19,7 @@ public class UserDao {
 				 + " VALUES (?, ?, ?, ?, ?, ?)";
 		try {		
 			Connection con = null;
-			PreparedStatement pstmt = null;	
+			PreparedStatement pstmt = null;
 			try {
 				con = datasource.getConnection();
 				pstmt = con.prepareStatement(sql);

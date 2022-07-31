@@ -9,7 +9,7 @@ import com.varxyz.banking.command.CustomerCommand;
 import com.varxyz.banking.dao.CustomerDao;
 import com.varxyz.banking.domain.Customer;
 
-public class CustomerService {
+public class CustomerService implements CServiceInterface {
 	
 	private CustomerDao customerDao;
 	

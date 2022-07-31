@@ -57,11 +57,26 @@ public class AccountDao {
 		return jdbcTemplate.query(sql, new CustomerAccountRowMapper(), ssn);
 	}
 	
-	public List<AccountCommand> findAccountByCustomerId(long customerId){
+	public List<AccountCommand> findAccountByEmail(String email){
+		String sql = "SELECT a.aid, a.customerId, a.accountNum, a.accType, "
+				+ " a.balance, a.interestRate, a.overAmount, a.regDate "
+				+ " FROM Account a INNER JOIN Customer c ON a.customerId = c.cid"
+				+ " WHERE c.email = ?";
+		return jdbcTemplate.query(sql, new CustomerAccountRowMapper(), email);
+	}
+	
+	public List<AccountCommand> getAccounts(long customerId){
 		String sql = "SELECT a.aid, a.customerId, a.accountNum, a.accType, "
 				+ " a.balance, a.interestRate, a.overAmount, a.regDate, c.cid "
 				+ " FROM Account a INNER JOIN Customer c ON a.customerId = c.cid"
 				+ " WHERE a.customerId = ?";
 		return jdbcTemplate.query(sql, new CustomerAccountRowMapper(), customerId);
+	}
+	
+	public void doTransfer(double money, String withdrawAccountNum, String depositAccountNum) {
+		String sql = "UPDATE Account SET balance = balance - ? WHERE accountNum=?";
+		String sql2 = "UPDATE Account SET balance = balance + ? WHERE accountNum=?";
+		jdbcTemplate.update(sql, money, withdrawAccountNum);
+		jdbcTemplate.update(sql2, money, depositAccountNum);
 	}
 }

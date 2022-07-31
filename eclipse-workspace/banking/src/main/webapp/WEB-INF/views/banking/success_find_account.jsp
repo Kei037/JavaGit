@@ -1,4 +1,3 @@
-<%@page import="com.varxyz.banking.domain.Customer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -17,5 +16,7 @@
 	<li>계좌개설일 : ${account.regDate}</li>
 ===============================================
 </c:forEach>
+<br>
+<a href="/banking/banking/add_account">계좌 신청하기</a>
 </body>
 </html>

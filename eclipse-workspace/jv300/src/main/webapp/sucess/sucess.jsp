@@ -22,7 +22,7 @@
 	</div>
 	<div id="content-wrapper">
 		<h3>회원가입되었습니다.</h3>
-		<jsp:useBean id="user" class="com.varxyz.jv300.mod008.User" scope="request"/>
+		<jsp:useBean id="user" class="com.varxyz.jv300.mod009.User" scope="request"/>
 		아이디 : <jsp:getProperty property="userId" name="user"/><br>
 		이름 : <jsp:getProperty property="userName" name="user"/>
 		

@@ -17,8 +17,7 @@ public class FindUserServlet extends HttpServlet {
 	
 	private UserService userService;
 	
-	public void init(ServletConfig config) throws ServletException {
-	}
+	public void init(ServletConfig config) throws ServletException {}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

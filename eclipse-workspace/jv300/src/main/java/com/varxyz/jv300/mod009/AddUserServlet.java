@@ -23,7 +23,7 @@ private static final long serialVersionUID = 1L;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {		
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
 		//1. 폼 파라미터 얻기
@@ -64,7 +64,7 @@ private static final long serialVersionUID = 1L;
 		userService.addUser(user);
 		request.setAttribute("user", user);
 		
-		dispatcher = request.getRequestDispatcher("/mod009/sucess.jsp");
+		dispatcher = request.getRequestDispatcher("/sucess/sucess.jsp");
 		dispatcher.forward(request, response);
 		
 	}
