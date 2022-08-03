@@ -1,7 +1,5 @@
 package com.varxyz.jvx331.command;
 
-import com.varxyz.jvx331.menu.MenuCategory;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,12 +8,13 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class MenuItemCommand {
-	private String name;
-	private String balance;
-	private String size;
+	private long categoryId;
+	private long subCategoryId;
+	private String nameKor;
+	private String nameEng;
+	private double balance;
 	private boolean ice;
-	private String quantity;
-	private MenuCategory menuCategory;
+	private String img;
 	
 	public MenuItemCommand() {
 		super();

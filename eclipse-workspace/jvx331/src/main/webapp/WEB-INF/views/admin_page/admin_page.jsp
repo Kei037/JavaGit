@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value ='/resources/css/default.css'/>"/>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/views/header/header.jsp"/>
+<h3>관리자 page</h3>
 </body>
 </html>

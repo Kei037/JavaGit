@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class BeverageCategory {
-	private String coffe;
+	private String coffee;
 	private String frappuccino;
 	private String blended;
 	private String tea;

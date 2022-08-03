@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class CategoryProvider {
-	private long menuHost;		// 선택되면 들어오는 값
-	private String menuCode;		// 화면에 보여지는 값
+public class SubCategoryProvider {
+	private long subMenuHost;		// 선택되면 들어오는 값
+	private String subMenuCode;		// 화면에 보여지는 값
 }

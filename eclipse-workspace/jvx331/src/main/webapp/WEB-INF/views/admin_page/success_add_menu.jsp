@@ -9,23 +9,25 @@
 <link rel="stylesheet" type="text/css" href="<c:url value ='/resources/css/default.css'/>"/>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/header/header.jsp"/>
 <h3>메뉴성공</h3>
 <strong>추가된 메뉴</strong>
-<label>이름 : </label>${menu.name}
 <br>
-<label>가격 : </label><${menu.balance}
+<label>이름 : </label>${menu.nameKor}, ${menu.nameEng}
 <br>
-<label>사이즈 종류 : </label>${menu.size}
+<label>가격 : </label>${menu.balance}원
 <br>
 <label>아이스 유/무 : </label>${menu.ice}
 <br>
 <label>메뉴 카테고리 : </label>
-<form:select path="menuCategory" style="width:170px; text-align:center;">
-	<option value="unknown">--선택--</option>
-		<form:options itemValue="emailHost" 
-						itemLabel="emailCode" 
-						items="${emailProviderList}"/>
-	</form:select>
+${menu.categoryId}
+${menu.subCategoryId}
 <br>
+<label>메뉴 이미지</label>
+<br>
+<!-- 
+<img alt="menu_img_area" src="${saveDir}${imgName}.jpg" style="width: 500px; height: 500px;">
+ -->
+<img alt="menu_img_area" src="/coffee_img/${imgName}" style="width: 300px; height: 300px;">
 </body>
 </html>

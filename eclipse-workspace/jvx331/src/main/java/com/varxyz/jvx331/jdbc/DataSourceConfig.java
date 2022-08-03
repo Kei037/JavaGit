@@ -5,7 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.varxyz.jvx331.dao.MenuItemDao;
 import com.varxyz.jvx331.menu.BeverageCategory;
+import com.varxyz.jvx331.service.MenuItemServiceImpl;
 
 
 
@@ -35,4 +37,13 @@ public class DataSourceConfig {
 		return new BeverageCategory();
 	}
 	
+	@Bean
+	public MenuItemDao menuItemDao() {
+		return new MenuItemDao(dataSource());
+	}
+	
+	@Bean
+	public MenuItemServiceImpl menuItemServiceImpl() {
+		return new MenuItemServiceImpl();
+	}
 }
