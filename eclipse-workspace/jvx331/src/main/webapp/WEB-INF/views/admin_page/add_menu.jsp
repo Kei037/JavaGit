@@ -40,10 +40,9 @@
 </form:select>
 <br>
 <p/>
-<input type="submit" value="메뉴추가"/>
 <label>메뉴 이미지 : </label>
 <input type="file" name="imgFile"/>
-<input type="submit" value="go">
+<input type="submit" value="메뉴추가">
 </form:form>
 </body>
 </html>

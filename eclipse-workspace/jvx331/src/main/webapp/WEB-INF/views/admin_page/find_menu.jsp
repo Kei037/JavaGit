@@ -10,18 +10,21 @@
 <link rel="stylesheet" type="text/css" href="<c:url value ='/resources/css/find_menu/find_menu.css'/>"/>
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/views/header/header.jsp"/>
 <h3>메뉴조회 page</h3>
 <div id="wrap">
-<c:forEach var="view" items="${test}">
+<c:forEach var="findMenu" items="${findMenuList}">
 
 <div class="menubox">
-<label>상품대분류 : </label>${view.categoryId}<br>
-<label>상품소분류 : </label>${view.sub_categoryId}<br>
-<label>상품이름(한글) : </label>${view.name_kor}<br>
-<label>상품이름(영어) : </label>${view.name_eng}<br>
-<label>상품가격 : </label>${view.balance}<br>
-<img alt="menu_img_area" src="/coffee_img/${view.img}" style="width: 300px; height: 300px;"><br>
+<p>${findMenu.mid}</p>
+<label>상품대분류 : </label>${findMenu.categoryId}<br>
+<label>상품소분류 : </label>${findMenu.sub_categoryId}<br>
+<label>상품이름(한글) : </label>${findMenu.name_kor}<br>
+<label>상품이름(영어) : </label>${findMenu.name_eng}<br>
+<label>상품가격 : </label>${findMenu.balance}<br>
+<img alt="menu_img" src="/coffee_img/${findMenu.img}" style="width: 300px; height: 300px;"><br>
+
+<a href="update_menu?id=${findMenu.mid}">메뉴조회</a>
 </div>
 
 </c:forEach>

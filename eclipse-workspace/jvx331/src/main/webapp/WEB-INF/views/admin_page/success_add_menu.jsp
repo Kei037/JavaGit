@@ -25,9 +25,9 @@ ${menu.subCategoryId}
 <br>
 <label>메뉴 이미지</label>
 <br>
-<!-- 
+<%--
 <img alt="menu_img_area" src="${saveDir}${imgName}.jpg" style="width: 500px; height: 500px;">
- -->
+--%>
 <img alt="menu_img_area" src="/coffee_img/${imgName}" style="width: 300px; height: 300px;">
 </body>
 </html>

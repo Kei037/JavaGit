@@ -15,6 +15,7 @@
 	  <li><a href="/jvx331/admin_page/admin_page">관리자page</a></li>
 	  <li><a href="/jvx331/admin_page/add_menu">메뉴등록</a></li>
 	  <li><a href="/jvx331/admin_page/find_menu">메뉴조회</a></li>
+	  <li><a href="/jvx331/admin_page/update_menu">메뉴변경</a></li>
 	</ul>
   </div>
 </header>

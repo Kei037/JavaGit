@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,17 +113,38 @@ public class MenuController {
 		return "admin_page/success_add_menu";
 	}
 	
-	
+	// 메뉴조회 form
 	@GetMapping("/admin_page/find_menu")
-	public String findMenuForm(HttpServletRequest request) {
+	public String findMenuForm(HttpServletRequest request, HttpSession session) {
+		
 		System.out.println("-------------------------------");
 		menuItemService.allFindMenu();
-		System.out.println(menuItemService.allFindMenu());
-		List<FindMenuItemCommand> test = menuItemService.allFindMenu();
-		for (FindMenuItemCommand result : test) {
-			request.setAttribute("result", result);
-		}
-		request.setAttribute("test", test);
+		List<FindMenuItemCommand> findMenuList = menuItemService.allFindMenu();
+		session.setAttribute("findMenuList", findMenuList);
+		System.out.println(session.getAttribute("findMenuList"));
+		request.setAttribute("findMenuList", findMenuList);
 		return "admin_page/find_menu";
 	}
+	
+	@PostMapping("/admin_page/find_menu")
+	public String updateEvent(HttpServletRequest request, HttpSession session) {
+		System.out.println("test");
+		
+		return "admin_page/update_menu";
+	}
+	
+	// 메뉴 업데이트 page
+	@GetMapping("/admin_page/update_menu")
+	public String updateMenuForm() {
+			
+		return "admin_page/update_menu";
+	}
+	
+	//메뉴 업데이트
+	@PostMapping
+	public String updateMenu() {
+		
+		return "admin_page/success_update_menu";
+	}
+	
 }

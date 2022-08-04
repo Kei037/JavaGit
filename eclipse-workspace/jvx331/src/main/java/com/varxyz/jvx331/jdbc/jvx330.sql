@@ -92,6 +92,12 @@ SELECT * FROM MenuItem LEFT JOIN Sub_Category
 ON MenuItem.sub_categoryId = Sub_Category.sid JOIN Category 
 ON Sub_Category.categoryId = Category.cid;
 
+UPDATE MenuItem LEFT JOIN Sub_Category ON MenuItem.sub_categoryId = Sub_Category.sid 
+JOIN Category ON Sub_Category.categoryId = Category.cid SET sub_categoryId = 501 , 
+name_kor = '카푸치노1', name_eng = 'Capuccino1', balance = 5600, ice = true, img = '13d9d2d2.jpg', 
+sid = 501, categoryId = 101, sub_name = 'coffee', cid = 101, name = 'Beverage' 
+WHERE name_kor = '카푸치노';
+
 ex)
 Category
 cid=1, name=Beverage
