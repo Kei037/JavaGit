@@ -16,7 +16,7 @@
 <c:forEach var="findMenu" items="${findMenuList}">
 
 <div class="menubox">
-<p>${findMenu.mid}</p>
+<%--<p>${findMenu.mid}</p> --%>
 <label>상품대분류 : </label>${findMenu.categoryId}<br>
 <label>상품소분류 : </label>${findMenu.sub_categoryId}<br>
 <label>상품이름(한글) : </label>${findMenu.name_kor}<br>
@@ -24,7 +24,12 @@
 <label>상품가격 : </label>${findMenu.balance}<br>
 <img alt="menu_img" src="/coffee_img/${findMenu.img}" style="width: 300px; height: 300px;"><br>
 
-<a href="update_menu?id=${findMenu.mid}">메뉴조회</a>
+<a href="update_menu?id=${findMenu.mid}">메뉴변경</a>
+<br>
+<form action="find_menu" method="post">
+    <input type="hidden" name="id" value="${findMenu.mid}"/>
+	<input type="submit" value="삭제하기"/>
+</form>
 </div>
 
 </c:forEach>

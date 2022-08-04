@@ -28,7 +28,7 @@ CREATE TABLE Account (
 
 SELECT * FROM Account;
 DROP TABLE Account;
-DELETE FROM MenuItem WHERE mid=1002;
+DELETE FROM MenuItem WHERE mid=1006;
 
 
 UPDATE Customer SET ssn='901212-1234567', phone='010-3434-4444' WHERE cid=1001;
@@ -76,9 +76,10 @@ CREATE TABLE MenuItem (
 	CONSTRAINT MenuItem_sub_categoryId_FK
 		FOREIGN KEY(sub_categoryId) REFERENCES Sub_Category(sid)
 )AUTO_INCREMENT = 1001;
+
 SELECT * FROM MenuItem;
 
-DROP TABLE MenuItem;
+!DROP TABLE MenuItem;
 
 INSERT INTO Category (name) VALUES ('Food');
 INSERT INTO Sub_Category (categoryId, sub_name) VALUES (102, 'icecream');
@@ -94,20 +95,13 @@ ON Sub_Category.categoryId = Category.cid;
 
 UPDATE MenuItem LEFT JOIN Sub_Category ON MenuItem.sub_categoryId = Sub_Category.sid 
 JOIN Category ON Sub_Category.categoryId = Category.cid SET sub_categoryId = 501 , 
-name_kor = '카푸치노1', name_eng = 'Capuccino1', balance = 5600, ice = true, img = '13d9d2d2.jpg', 
+name_kor = '카푸치노2',  balance = 5600, ice = true, img = '13d9d2d2.jpg', 
 sid = 501, categoryId = 101, sub_name = 'coffee', cid = 101, name = 'Beverage' 
-WHERE name_kor = '카푸치노';
+WHERE name_kor = '카푸치노1';
 
-ex)
-Category
-cid=1, name=Beverage
+UPDATE MenuItem SET sub_categoryId = 501, name_kor = '카푸치', name_eng = 'Cappuccin', 
+balance = 5600.0, ice = true, img = 'e0689792.jpg' WHERE mid = 1002;
 
-Sub_Category
-sid=1, categoryId=1, sub_name=coffee
-
-MenuItem
-mid=1, sub_categoryId=1, name_kor=아메리카노 name_eng=americano, balance=4500,
-ice=1, img='C:\Users\Junyoung\Desktop\coffe_img';
 
 
 

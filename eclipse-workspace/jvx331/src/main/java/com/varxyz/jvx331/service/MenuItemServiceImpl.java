@@ -18,8 +18,22 @@ public class MenuItemServiceImpl implements MenuItemService {
 		menuItemDao.addMenuItem(menuItemCommand);
 	}
 	
+	@Override
 	public List<FindMenuItemCommand> allFindMenu(){
 		return menuItemDao.allFindMenu();
 	}
 	
+	@Override
+	public FindMenuItemCommand findMenu(long id) {
+		return menuItemDao.findMenu(id);
+	}
+	
+	@Override
+	public void updateMenuItem(MenuItemCommand menuItemCommand, long id) {
+		menuItemDao.updateMenuItem(menuItemCommand, id);
+	}
+	
+	public void dropMenuItem(long id) {
+		menuItemDao.dropMenuItem(id);
+	}
 }
