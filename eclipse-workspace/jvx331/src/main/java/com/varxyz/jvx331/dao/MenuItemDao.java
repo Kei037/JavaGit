@@ -89,14 +89,45 @@ public class MenuItemDao {
 	}
 	
 	// 카테고리별 select 만들기
-	public void findMenuByCategory() {
+	public List<FindMenuItemCommand> findMenuByCategory(long cid) {
+		String sql = "SELECT * FROM MenuItem LEFT JOIN Sub_Category "
+				+ " ON MenuItem.sub_categoryId = Sub_Category.sid JOIN Category "
+				+ " ON Sub_Category.categoryId = Category.cid WHERE cid = ?";
 		
+		return jdbcTemplate.query(sql, new RowMapper<FindMenuItemCommand>() {
+			
+			public FindMenuItemCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+				FindMenuItemCommand findMenuItemCommand = new FindMenuItemCommand(rs.getLong("mid"),
+						rs.getLong("sub_categoryId"), rs.getString("name_kor"), 
+						rs.getString("name_eng"), rs.getDouble("balance"), 
+						rs.getBoolean("ice"), rs.getString("img"), 
+						rs.getTimestamp("regDate"), rs.getLong("sid"), 
+						rs.getLong("categoryId"), rs.getString("sub_name"), 
+						rs.getLong("cid"), rs.getString("name"));
+				return findMenuItemCommand;
+			}
+		},cid);
 	}
 	
-	public void findMenuBySubCategory() {
+	public List<FindMenuItemCommand> findMenuBySubCategory(long sid) {
+		String sql = "SELECT * FROM MenuItem LEFT JOIN Sub_Category "
+				+ " ON MenuItem.sub_categoryId = Sub_Category.sid JOIN Category "
+				+ " ON Sub_Category.categoryId = Category.cid WHERE sid = ?";
 		
+		return jdbcTemplate.query(sql, new RowMapper<FindMenuItemCommand>() {
+			
+			public FindMenuItemCommand mapRow(ResultSet rs, int rowNum) throws SQLException {
+				FindMenuItemCommand findMenuItemCommand = new FindMenuItemCommand(rs.getLong("mid"),
+						rs.getLong("sub_categoryId"), rs.getString("name_kor"), 
+						rs.getString("name_eng"), rs.getDouble("balance"), 
+						rs.getBoolean("ice"), rs.getString("img"), 
+						rs.getTimestamp("regDate"), rs.getLong("sid"), 
+						rs.getLong("categoryId"), rs.getString("sub_name"), 
+						rs.getLong("cid"), rs.getString("name"));
+				return findMenuItemCommand;
+			}
+		},sid);
 	}
-	
 	
 	
 }

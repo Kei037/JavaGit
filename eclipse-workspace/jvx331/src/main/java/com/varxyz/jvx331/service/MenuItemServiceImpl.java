@@ -36,4 +36,12 @@ public class MenuItemServiceImpl implements MenuItemService {
 	public void dropMenuItem(long id) {
 		menuItemDao.dropMenuItem(id);
 	}
+	
+	public List<FindMenuItemCommand> findMenuByCategory(long cid){
+		return menuItemDao.findMenuByCategory(cid);
+	}
+	
+	public List<FindMenuItemCommand> findMenuBySubCategory(long sid){
+		return menuItemDao.findMenuBySubCategory(sid);
+	}
 }

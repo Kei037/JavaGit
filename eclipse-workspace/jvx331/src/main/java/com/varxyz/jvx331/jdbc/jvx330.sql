@@ -39,7 +39,7 @@ WHERE c.ssn = '970824-1234567';
 
 /*
 Berverage = 101
-coffe = 501, fappuccino = 502, blended = 503, tea = 504, coldBrew = 505, juice = 506
+coffee = 501, fappuccino = 502, blended = 503, tea = 504, coldBrew = 505, juice = 506
 
 Food = 102
 bread = 507, cake = 508, sandwich = 509, snack = 510, icecream = 511
@@ -79,6 +79,8 @@ CREATE TABLE MenuItem (
 
 SELECT * FROM MenuItem;
 
+SELECT * FROM MenuItem WHERE ;
+
 !DROP TABLE MenuItem;
 
 INSERT INTO Category (name) VALUES ('Food');
@@ -98,6 +100,11 @@ JOIN Category ON Sub_Category.categoryId = Category.cid SET sub_categoryId = 501
 name_kor = '카푸치노2',  balance = 5600, ice = true, img = '13d9d2d2.jpg', 
 sid = 501, categoryId = 101, sub_name = 'coffee', cid = 101, name = 'Beverage' 
 WHERE name_kor = '카푸치노1';
+
+SELECT MenuItem.*, Sub_Category.sid, Category.cid FROM MenuItem LEFT JOIN Sub_Category 
+ON MenuItem.Sub_categoryId = Sub_Category.sid JOIN Category 
+ON Sub_Category.categoryId = Category.cid WHERE cid = 101;
+
 
 UPDATE MenuItem SET sub_categoryId = 501, name_kor = '카푸치', name_eng = 'Cappuccin', 
 balance = 5600.0, ice = true, img = 'e0689792.jpg' WHERE mid = 1002;
